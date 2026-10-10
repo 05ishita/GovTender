@@ -1,68 +1,194 @@
-# GovTender
+# GovTender — Government Tender & RFP Marketplace
 
-GovTender is a MERN-based government tender and RFP marketplace that connects contractors with bid writers for proposal work.
+A full-stack web application that connects contractors with professional bid and proposal writers. GovTender helps users discover tenders, manage applications, collaborate with writers, and analyze RFP requirements using AI.
 
-## Core features
-- JWT authentication with Contractor / Bid Writer / Admin roles
-- Tender and RFP creation with PDF/DOC/DOCX uploads
-- Tender discovery and detailed tender view
-- Writer applications with proposal, rate and match score
-- Contractor review, shortlisting and writer selection workflow
-- Smart writer recommendations based on skills, experience and availability
-- Writer profiles
-- Direct messaging with notifications
-- Reviews and ratings after selected collaborations
-- Admin dashboard with user verification and marketplace stats
-- Gemini-powered RFP analysis assistant
+**Live Website:** https://govtender-three.vercel.app/  
+**Backend API:** https://govtender-backend.onrender.com  
+**GitHub Repository:** https://github.com/05ishita/GovTender
 
-## Update an existing Windows project
-If you already have `C:\Users\Ankita\Desktop\gov-tender-marketplace`, extract the delivered ZIP completely and run `APPLY-UPDATE.ps1` from the extracted folder in PowerShell. It creates a timestamped backup first and preserves your local `.env` files, `uploads`, and `node_modules`.
+## Overview
 
-## Local setup
+GovTender is designed to simplify the government tender and Request for Proposal (RFP) process. It provides a centralized platform where contractors can publish tender opportunities and writers can discover relevant projects, submit applications, and collaborate with contractors.
 
-### Backend
-```powershell
-cd server
-npm install
-copy .env.example .env
-npm run dev
-```
+The platform also includes an AI-assisted RFP analysis workflow to help identify project requirements, required skills, deadlines, potential risks, and suitable writers.
 
-Set these values in `server/.env`:
-- `MONGO_URI`
-- `JWT_SECRET` (use a long, unique secret)
-- `GEMINI_API_KEY` (optional; AI features use fallback behavior when not configured)
-- `CLIENT_URL=http://localhost:5173`
+## Key Features
 
-### Create the first admin account (optional)
-1. Set `ADMIN_NAME`, `ADMIN_EMAIL`, and a unique `ADMIN_PASSWORD` of at least 12 characters in `server/.env`.
-2. Run `npm run create-admin` from the `server` directory.
-3. Remove the three `ADMIN_*` values from `.env` after the account is created. Admin accounts cannot be created through public registration.
+- **Authentication and Role-Based Access:** Separate access for contractors, writers, and administrators.
+- **Tender Management:** Create, browse, view, and manage tender opportunities.
+- **Application Management:** Submit applications and manage application statuses, including shortlisting and selection.
+- **Writer Profiles:** Display writer skills, experience, and profile information.
+- **AI-Powered RFP Analysis:** Analyze RFP content and extract useful project insights using Gemini AI.
+- **Messaging:** Support communication between platform users.
+- **Notifications:** Keep users informed about relevant application and status updates.
+- **Reviews and Ratings:** Support feedback and reviews within the marketplace.
+- **Dashboards:** Provide role-specific views for managing platform activities.
+- **Responsive Interface:** Built with a modern React-based frontend.
+
+## Tech Stack
 
 ### Frontend
-```powershell
+- React
+- Vite
+- Tailwind CSS
+- Axios
+- Lucide React
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT-based authentication
+- Multer for file uploads
+- Gemini API for AI-assisted RFP analysis
+
+## Application Architecture
+
+```text
+GovTender/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── ...
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/                 # Express backend
+│   ├── config/
+│   ├── controllers/
+│   ├── routes/
+│   ├── middleware/
+│   ├── scripts/
+│   ├── uploads/
+│   ├── index.js
+│   └── package.json
+│
+└── README.md
+```
+
+*Note: The exact folder structure may vary slightly depending on the current implementation.*
+
+## Getting Started
+
+### Prerequisites
+
+Install the following before running the project locally:
+
+- Node.js and npm
+- MongoDB Atlas account or a compatible MongoDB instance
+- Gemini API key for AI analysis features
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/05ishita/GovTender.git
+cd GovTender
+```
+
+### 2. Set Up the Backend
+
+```bash
+cd server
+npm install
+```
+
+Create a `.env` file inside the `server` directory and configure the environment variables required by the backend.
+
+Example:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_jwt_secret
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Use the exact Gemini API variable name expected by the source code. Never commit real credentials or secret values to GitHub.
+
+Start the backend:
+
+```bash
+npm start
+```
+
+The backend should start on the configured port, typically `5000` locally.
+
+### 3. Set Up the Frontend
+
+Open a second terminal:
+
+```bash
 cd client
 npm install
-copy .env.example .env
+```
+
+Configure the frontend API base URL using the variable expected by the frontend source code. If the code uses `VITE_API_URL`, create `client/.env` with:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-`client/.env` should contain:
-```env
-VITE_API_URL=http://localhost:5000/api
+Open the local URL shown in the terminal, typically:
+
+```text
+http://localhost:5173
 ```
 
-## Production notes
-- Never commit `.env` files or uploaded documents.
-- Use a strong production `JWT_SECRET`.
-- For deployed uploads, replace local disk storage with persistent/object storage if the hosting platform does not provide persistent filesystems.
-- Set `CLIENT_URL` and `VITE_API_URL` to the deployed frontend/backend URLs.
+### 4. Build the Frontend
 
-## Demo flow
-1. Register a Contractor and a Bid Writer.
-2. Contractor creates a tender and uploads a tender document.
-3. Writer browses the tender and submits an application.
-4. Contractor reviews, shortlists and selects the writer.
-5. Both users can message each other.
-6. Completed selected collaborations can be reviewed from Reviews.
-7. AI Assistant can analyze RFP/tender text and suggest writer requirements.
+From the `client` directory, run:
+
+```bash
+npm run build
+```
+
+Vite generates the production build in the `dist` directory.
+
+## Deployment
+
+The project is deployed using:
+
+- **Frontend:** Vercel
+- **Backend:** Render
+- **Database:** MongoDB Atlas
+
+Production URLs:
+
+- Frontend: https://govtender-three.vercel.app/
+- Backend: https://govtender-backend.onrender.com
+
+Configure the production frontend API URL to point to the deployed backend. Set database credentials, JWT secrets, and AI API keys through the hosting provider's environment-variable settings.
+
+## Security Notes
+
+- Keep `.env` files and credentials private.
+- Never expose JWT secrets or AI API keys in frontend code.
+- Use server-side authorization for protected operations.
+- Do not allow public registration to assign administrator privileges.
+- Validate user input and uploaded files before processing them.
+
+## Future Enhancements
+
+- Advanced tender search and filtering
+- Improved writer recommendation and matching
+- Enhanced analytics and reporting
+- Additional automated tests and monitoring
+- Further improvements to accessibility and performance
+
+## Author
+
+**Ishita Singh**
+
+- GitHub: [@05ishita](https://github.com/05ishita)
+
+---
+
+Built as a full-stack marketplace project focused on tender discovery, bid-writing collaboration, and AI-assisted RFP analysis.
