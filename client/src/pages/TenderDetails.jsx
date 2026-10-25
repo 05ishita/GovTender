@@ -11,7 +11,7 @@ import {
   UserRound,
 } from "lucide-react";
 import api, { API_ORIGIN } from "../services/api";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const TenderDetails = () => {
   const { id } = useParams();
@@ -44,8 +44,12 @@ const TenderDetails = () => {
   };
 
   useEffect(() => {
-    fetchTender();
-  }, [id]);
+    const timer = setTimeout(() => {
+      void fetchTender();
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleApply = async (event) => {
     event.preventDefault();
@@ -182,7 +186,7 @@ const TenderDetails = () => {
 
                 <p className="mt-2 font-bold text-slate-900">
                   {tender.budget
-                    ? `₹${Number(tender.budget).toLocaleString("en-IN")}`
+                    ? `â‚¹${Number(tender.budget).toLocaleString("en-IN")}`
                     : "Negotiable"}
                 </p>
               </div>

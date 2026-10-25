@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle2,
@@ -133,12 +133,12 @@ const Home = () => {
           {/* Hero Card */}
           <div className="relative">
             <div className="rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur">
-              <div className="rounded-2xl bg-white p-6">
+              <div className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-2xl shadow-blue-950/10 backdrop-blur-xl">
 
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-slate-500">
-                      Recommended Writer
+                      Sample Writer Profile
                     </p>
                     <h3 className="mt-1 text-xl font-bold">
                       Technical RFP Specialist
@@ -160,12 +160,12 @@ const Home = () => {
                       Proposal Consultant
                     </p>
                     <p className="text-sm text-slate-500">
-                      7+ years experience
+                      Illustrative profile
                     </p>
                   </div>
 
                   <div className="ml-auto rounded-full bg-green-100 px-3 py-1 text-sm font-bold text-green-700">
-                    92% Match
+                    Sample Match
                   </div>
                 </div>
 
@@ -176,13 +176,13 @@ const Home = () => {
                   </div>
 
                   <div className="rounded-xl bg-slate-50 p-3 text-center">
-                    <p className="text-xs text-slate-500">Projects</p>
-                    <p className="mt-1 text-sm font-semibold">84+</p>
+                    <p className="text-xs text-slate-500">Focus</p>
+                    <p className="mt-1 text-sm font-semibold">RFPs</p>
                   </div>
 
                   <div className="rounded-xl bg-slate-50 p-3 text-center">
-                    <p className="text-xs text-slate-500">Rating</p>
-                    <p className="mt-1 text-sm font-semibold">4.9/5</p>
+                    <p className="text-xs text-slate-500">Expertise</p>
+                    <p className="mt-1 text-sm font-semibold">Compliance</p>
                   </div>
                 </div>
 
@@ -197,33 +197,23 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Stats */}
+      {/* Platform capabilities */}
       <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-slate-200 md:grid-cols-4">
-          <div className="p-7 text-center">
-            <p className="text-3xl font-bold text-slate-900">500+</p>
-            <p className="mt-1 text-sm text-slate-500">Bid Writers</p>
-          </div>
-
-          <div className="p-7 text-center">
-            <p className="text-3xl font-bold text-slate-900">1,200+</p>
-            <p className="mt-1 text-sm text-slate-500">Tender Projects</p>
-          </div>
-
-          <div className="p-7 text-center">
-            <p className="text-3xl font-bold text-slate-900">92%</p>
-            <p className="mt-1 text-sm text-slate-500">Successful Matches</p>
-          </div>
-
-          <div className="p-7 text-center">
-            <p className="text-3xl font-bold text-slate-900">4.8/5</p>
-            <p className="mt-1 text-sm text-slate-500">Average Rating</p>
-          </div>
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 py-8 sm:grid-cols-2 md:grid-cols-4">
+          {[
+            ["Tender Discovery", "Explore tender opportunities"],
+            ["Writer Matching", "Compare relevant expertise"],
+            ["Application Workflow", "Manage bids in one place"],
+            ["AI Assistance", "Organize RFP requirements"],
+          ].map(([title, description]) => (
+            <div key={title} className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+              <p className="font-semibold text-slate-900">{title}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+            </div>
+          ))}
         </div>
       </section>
-
-      {/* How it works */}
+{/* How it works */}
       <section id="how-it-works" className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-6">
 
@@ -242,9 +232,10 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="relative mt-14 grid gap-6 md:grid-cols-3">
+              <div aria-hidden="true" className="absolute left-[16.66%] right-[16.66%] top-6 hidden h-px bg-blue-200 md:block" />
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+            <div className="relative z-10 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
                 <FileText size={23} />
               </div>
@@ -259,7 +250,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+            <div className="relative z-10 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
                 <Search size={23} />
               </div>
@@ -274,7 +265,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+            <div className="relative z-10 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-shadow hover:shadow-md">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
                 <BriefcaseBusiness size={23} />
               </div>
@@ -359,7 +350,7 @@ const Home = () => {
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <p className="text-sm text-slate-400">
-                    Example Recommendation
+                    Sample Profiles
                   </p>
                   <h3 className="mt-1 text-xl font-bold text-white">
                     Recommended Bid Writers
@@ -372,9 +363,9 @@ const Home = () => {
               <div className="space-y-4">
 
                 {[
-                  ["Technical RFP Specialist", "Civil · RFP · Compliance", "92%"],
-                  ["Government Proposal Writer", "Municipal · Proposal", "87%"],
-                  ["Bid Response Consultant", "RFP · Documentation", "81%"],
+                  ["Technical RFP Specialist", "Civil Â· RFP Â· Compliance", "Sample"],
+                  ["Government Proposal Writer", "Municipal Â· Proposal", "Sample"],
+                  ["Bid Response Consultant", "RFP Â· Documentation", "Sample"],
                 ].map(([name, skills, match]) => (
                   <div
                     key={name}
@@ -435,24 +426,27 @@ const Home = () => {
           </Link>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="bg-slate-950">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="font-bold text-white">
-              GovTender
+            <p className="font-bold text-white">GovTender</p>
+            <p className="mt-1 text-sm text-slate-400">
+              Government Tender &amp; Bid Writers Marketplace
             </p>
-            <p className="mt-1 text-sm text-slate-500">
-              Government Tender & Bid Writers Marketplace
+            <p className="mt-3 text-xs text-slate-500">
+              Explore opportunities, connect with writers and manage your tender workflow.
             </p>
           </div>
-
-          <p className="text-sm text-slate-500">
-            © 2026 GovTender. All rights reserved.
+          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-5 gap-y-3 text-sm">
+            <a href="#how-it-works" className="text-slate-300 hover:text-white">How It Works</a>
+            <a href="#features" className="text-slate-300 hover:text-white">Features</a>
+            <Link to="/login" className="text-slate-300 hover:text-white">Sign In</Link>
+            <Link to="/register" className="text-slate-300 hover:text-white">Create Account</Link>
+          </nav>
+          <p className="text-sm text-slate-400">
+            &copy; 2026 GovTender. All rights reserved.
           </p>
-
         </div>
       </footer>
 

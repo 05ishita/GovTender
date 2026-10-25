@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import api from "../services/api";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const WriterDashboard = () => {
   const { user } = useAuth();
@@ -60,7 +60,11 @@ const WriterDashboard = () => {
   };
 
   useEffect(() => {
-    loadDashboard();
+    const timer = setTimeout(() => {
+      void loadDashboard();
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const stats = useMemo(() => {
@@ -268,7 +272,7 @@ const WriterDashboard = () => {
                       <p className="mt-1 text-xs text-slate-500">
                         {tender.category}
                         {tender.location
-                          ? ` • ${tender.location}`
+                          ? ` â€¢ ${tender.location}`
                           : ""}
                       </p>
                     </div>
@@ -291,7 +295,7 @@ const WriterDashboard = () => {
                     </span>
 
                     <span className="font-semibold text-blue-600">
-                      View Details →
+                      View Details â†’
                     </span>
                   </div>
                 </Link>

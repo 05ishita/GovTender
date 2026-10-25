@@ -1,7 +1,6 @@
 
 
 
-import { Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -16,7 +15,7 @@ import {
 } from "lucide-react";
 
 import api from "../services/api";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const ContractorDashboard = () => {
   const { user } = useAuth();
@@ -80,7 +79,11 @@ const ContractorDashboard = () => {
   };
 
   useEffect(() => {
-    loadDashboard();
+    const timer = setTimeout(() => {
+      void loadDashboard();
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const stats = useMemo(() => {
@@ -246,7 +249,7 @@ const ContractorDashboard = () => {
                     </h3>
 
                     <p className="mt-1 text-xs text-slate-500">
-                      {tender.category} •{" "}
+                      {tender.category} â€¢{" "}
                       {tender.applicationCount || 0} applications
                     </p>
                   </div>

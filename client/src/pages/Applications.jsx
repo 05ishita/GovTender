@@ -10,7 +10,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import api from "../services/api";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const statusStyles = {
   pending: "bg-amber-100 text-amber-700",
@@ -68,8 +68,12 @@ const Applications = () => {
   };
 
   useEffect(() => {
-    loadApplications();
-  }, [isContractor]);
+    const timer = setTimeout(() => {
+      void loadApplications();
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, [isContractor]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateStatus = async (applicationId, status) => {
     setUpdatingId(applicationId);
@@ -223,7 +227,7 @@ const Applications = () => {
                       Proposed Rate
                     </p>
                     <p className="mt-1 text-lg font-bold text-slate-900">
-                      ₹{Number(application.proposedRate || 0).toLocaleString("en-IN")}
+                      â‚¹{Number(application.proposedRate || 0).toLocaleString("en-IN")}
                     </p>
                   </div>
 
@@ -235,7 +239,7 @@ const Applications = () => {
                       <Clock size={15} />
                       {application.createdAt
                         ? new Date(application.createdAt).toLocaleDateString("en-IN")
-                        : "—"}
+                        : "â€”"}
                     </p>
                   </div>
                 </div>
