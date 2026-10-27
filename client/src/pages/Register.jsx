@@ -115,7 +115,7 @@ const Register = () => {
                 className="flex items-center gap-3 text-sm text-blue-50"
               >
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
-                  ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“
+                  &#10003;
                 </span>
                 {item}
               </div>
@@ -306,7 +306,7 @@ const Register = () => {
               to="/"
               className="mt-5 block text-center text-sm text-slate-400 hover:text-slate-700"
             >
-              ÃƒÂ¢Ã¢â‚¬ Ã‚Â Back to homepage
+             Back to homepage
             </Link>
           </div>
         </div>

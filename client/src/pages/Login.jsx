@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
@@ -209,7 +209,7 @@ const Login = () => {
               to="/"
               className="mt-5 block text-center text-sm text-slate-400 hover:text-slate-700"
             >
-              ÃƒÂ¢Ã¢â‚¬ Ã‚Â Back to homepage
+              ← Back to homepage
             </Link>
           </div>
         </div>
