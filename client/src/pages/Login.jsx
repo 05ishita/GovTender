@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
@@ -92,20 +92,18 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">1</p>
-              <p className="mt-1 text-xs text-slate-400">Workspace</p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="font-semibold text-white">Tender opportunities</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">Organize bid opportunities in one place.</p>
             </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">AI</p>
-              <p className="mt-1 text-xs text-slate-400">Assistance</p>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="font-semibold text-white">Writer discovery</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">Explore writers by skills and expertise.</p>
             </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">24/7</p>
-              <p className="mt-1 text-xs text-slate-400">Access</p>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="font-semibold text-white">RFP workflow</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">Manage applications and bid responses.</p>
             </div>
           </div>
         </div>
@@ -211,7 +209,7 @@ const Login = () => {
               to="/"
               className="mt-5 block text-center text-sm text-slate-400 hover:text-slate-700"
             >
-              Ã¢â€ Â Back to homepage
+              ÃƒÂ¢Ã¢â‚¬ Ã‚Â Back to homepage
             </Link>
           </div>
         </div>
@@ -221,3 +219,4 @@ const Login = () => {
 };
 
 export default Login;
+

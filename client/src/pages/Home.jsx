@@ -363,9 +363,9 @@ const Home = () => {
               <div className="space-y-4">
 
                 {[
-                  ["Technical RFP Specialist", "Civil Â· RFP Â· Compliance", "Sample"],
-                  ["Government Proposal Writer", "Municipal Â· Proposal", "Sample"],
-                  ["Bid Response Consultant", "RFP Â· Documentation", "Sample"],
+                  ["Technical RFP Specialist", "Civil | RFP | Compliance", "Sample"],
+                  ["Government Proposal Writer", "Municipal | Proposal", "Sample"],
+                  ["Bid Response Consultant", "RFP | Documentation", "Sample"],
                 ].map(([name, skills, match]) => (
                   <div
                     key={name}
@@ -443,6 +443,9 @@ const Home = () => {
             <a href="#features" className="text-slate-300 hover:text-white">Features</a>
             <Link to="/login" className="text-slate-300 hover:text-white">Sign In</Link>
             <Link to="/register" className="text-slate-300 hover:text-white">Create Account</Link>
+            <a href="/privacy-policy" className="text-slate-300 hover:text-white">Privacy Policy</a>
+            <a href="/terms-of-service" className="text-slate-300 hover:text-white">Terms of Service</a>
+            <a href="/security-standards" className="text-slate-300 hover:text-white">Security Standards</a>
           </nav>
           <p className="text-sm text-slate-400">
             &copy; 2026 GovTender. All rights reserved.
@@ -455,3 +458,7 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
@@ -115,7 +115,7 @@ const Register = () => {
                 className="flex items-center gap-3 text-sm text-blue-50"
               >
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
-                  Ã¢Å“â€œ
+                  ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“
                 </span>
                 {item}
               </div>
@@ -130,12 +130,10 @@ const Register = () => {
                 Get started
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-slate-900">
-                Create your account
-              </h2>
+              <h2 className="mt-2 text-3xl font-bold text-slate-900">Create your GovTender account</h2>
 
               <p className="mt-2 text-sm text-slate-500">
-                Choose how you will use the GovTender marketplace.
+                Join as a contractor or technical bid writer.
               </p>
             </div>
 
@@ -160,9 +158,7 @@ const Register = () => {
                         ? "border-blue-600 bg-blue-50 text-blue-700"
                         : "border-slate-200 text-slate-600 hover:border-slate-300"
                     }`}
-                  >
-                    Contractor
-                  </button>
+                  ><span className="block font-bold">Contractor</span><span className="mt-1 block text-left text-xs font-normal leading-5">I need a technical writer to help prepare and submit tender bids.</span></button>
 
                   <button
                     type="button"
@@ -174,9 +170,7 @@ const Register = () => {
                         ? "border-blue-600 bg-blue-50 text-blue-700"
                         : "border-slate-200 text-slate-600 hover:border-slate-300"
                     }`}
-                  >
-                    Bid Writer
-                  </button>
+                  ><span className="block font-bold">Bid Writer</span><span className="mt-1 block text-left text-xs font-normal leading-5">I write technical proposals and want to find tender opportunities.</span></button>
                 </div>
               </div>
 
@@ -312,7 +306,7 @@ const Register = () => {
               to="/"
               className="mt-5 block text-center text-sm text-slate-400 hover:text-slate-700"
             >
-              Ã¢â€ Â Back to homepage
+              ÃƒÂ¢Ã¢â‚¬ Ã‚Â Back to homepage
             </Link>
           </div>
         </div>
@@ -322,3 +316,7 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+
