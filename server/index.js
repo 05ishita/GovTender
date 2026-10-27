@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
@@ -23,9 +23,11 @@ connectDB();
 
 app.use(
   cors({
-    origin:
-      process.env.CLIENT_URL ||
+    origin: [
+      process.env.CLIENT_URL,
+      "https://govtender-three.vercel.app",
       "http://localhost:5173",
+    ].filter(Boolean),
     credentials: true,
   })
 );
