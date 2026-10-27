@@ -19,7 +19,7 @@ import {
   BrainCircuit,
 } from "lucide-react";
 
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import NotificationsMenu from "../components/NotificationsMenu";
 
 const DashboardLayout = ({ children }) => {

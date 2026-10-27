@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "Sign in | GovTender";
+  }, []);
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useAuth();
@@ -89,20 +92,18 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">1</p>
-              <p className="mt-1 text-xs text-slate-400">Workspace</p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="font-semibold text-white">Tender opportunities</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">Organize bid opportunities in one place.</p>
             </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">AI</p>
-              <p className="mt-1 text-xs text-slate-400">Assistance</p>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="font-semibold text-white">Writer discovery</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">Explore writers by skills and expertise.</p>
             </div>
-
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">24/7</p>
-              <p className="mt-1 text-xs text-slate-400">Access</p>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="font-semibold text-white">RFP workflow</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">Manage applications and bid responses.</p>
             </div>
           </div>
         </div>
@@ -131,7 +132,7 @@ const Login = () => {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                <label htmlFor="login-email" className="mb-2 block text-sm font-semibold text-slate-700">
                   Email address
                 </label>
 
@@ -141,8 +142,7 @@ const Login = () => {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                   />
 
-                  <input
-                    type="email"
+                  <input type="email" id="login-email" autoComplete="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
@@ -153,7 +153,7 @@ const Login = () => {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                <label htmlFor="login-password" className="mb-2 block text-sm font-semibold text-slate-700">
                   Password
                 </label>
 
@@ -163,8 +163,7 @@ const Login = () => {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                   />
 
-                  <input
-                    type={showPassword ? "text" : "password"}
+                  <input type={showPassword ? "text" : "password"} id="login-password" autoComplete="current-password"
                     name="password"
                     value={form.password}
                     onChange={handleChange}
@@ -174,8 +173,8 @@ const Login = () => {
 
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700"
+                    onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}
+                    className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
                   >
                     {showPassword ? (
                       <EyeOff size={18} />
@@ -186,8 +185,8 @@ const Login = () => {
                 </div>
               </div>
 
-              <button
-                type="submit"
+              <div className="mb-4 text-right"><Link to="/forgot-password" className="text-sm font-semibold text-blue-700 underline-offset-4 hover:underline">Forgot password?</Link></div>
+              <button type="submit"
                 disabled={loading}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3.5 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
               >
@@ -220,3 +219,4 @@ const Login = () => {
 };
 
 export default Login;
+

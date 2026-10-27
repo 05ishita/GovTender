@@ -38,7 +38,11 @@ const Reviews = () => {
   };
 
   useEffect(() => {
-    loadData();
+    const timer = setTimeout(() => {
+      void loadData();
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const submitReview = async (event) => {
@@ -162,7 +166,7 @@ const Reviews = () => {
             <div>
               <h2 className="text-xl font-bold text-slate-900">Write your review</h2>
               <p className="mt-1 text-sm text-slate-500">
-                {selected.reviewee.name} · {selected.tender.title}
+                {selected.reviewee.name} Â· {selected.tender.title}
               </p>
             </div>
             <button type="button" onClick={() => setSelected(null)} className="text-sm font-semibold text-slate-500 hover:text-slate-900">

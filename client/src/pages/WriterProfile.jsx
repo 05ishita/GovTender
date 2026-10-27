@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -9,11 +9,10 @@ import {
   MessageCircle,
   Save,
   User,
-  X,
 } from "lucide-react";
 
 import api from "../services/api";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const WriterProfile = () => {
   const { id } = useParams();
@@ -250,7 +249,7 @@ const WriterProfile = () => {
               Expected Rate
             </p>
             <p className="mt-1 text-xl font-bold text-slate-900">
-              ₹
+              â‚¹
               {Number(
                 writer.expectedRate || 0
               ).toLocaleString("en-IN")}
@@ -346,7 +345,7 @@ const WriterProfile = () => {
 
             <label className="block">
               <span className="mb-2 block text-sm font-semibold text-slate-700">
-                Expected Rate (₹)
+                Expected Rate (â‚¹)
               </span>
               <input
                 name="expectedRate"

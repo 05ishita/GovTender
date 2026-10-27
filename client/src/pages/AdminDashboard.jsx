@@ -39,7 +39,11 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    loadAdminData();
+    const timer = setTimeout(() => {
+      void loadAdminData();
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const toggleVerification = async (
@@ -187,7 +191,7 @@ const AdminDashboard = () => {
                   </td>
 
                   <td className="px-6 py-4 text-sm">
-                    {user.companyName || "—"}
+                    {user.companyName || "â€”"}
                   </td>
 
                   <td className="px-6 py-4">
@@ -243,7 +247,7 @@ const AdminDashboard = () => {
                 </h3>
 
                 <p className="mt-1 text-xs text-slate-500">
-                  {tender.category} •{" "}
+                  {tender.category} â€¢{" "}
                   {tender.contractor?.name || "Contractor"}
                 </p>
               </div>

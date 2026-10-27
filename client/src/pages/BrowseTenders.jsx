@@ -35,7 +35,11 @@ const BrowseTenders = () => {
   };
 
   useEffect(() => {
-    fetchTenders();
+    const timer = setTimeout(() => {
+      void fetchTenders();
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const filteredTenders = tenders.filter((tender) => {

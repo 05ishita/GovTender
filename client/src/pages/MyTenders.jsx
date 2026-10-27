@@ -33,7 +33,11 @@ const MyTenders = () => {
   };
 
   useEffect(() => {
-    fetchTenders();
+    const timer = setTimeout(() => {
+      void fetchTenders();
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const formatDate = (date) => {

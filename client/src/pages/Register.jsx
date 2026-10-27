@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
@@ -8,9 +8,12 @@ import {
   Mail,
   User,
 } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
+  useEffect(() => {
+    document.title = "Create account | GovTender";
+  }, []);
   const navigate = useNavigate();
   const { register } = useAuth();
 
@@ -18,7 +21,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    role: "contractor",
+    role: "",
     phone: "",
     companyName: "",
   });
@@ -46,6 +49,11 @@ const Register = () => {
 
     if (form.password.length < 6) {
       setError("Password must contain at least 6 characters.");
+      return;
+    }
+
+    if (!form.role) {
+      setError("Please select how you want to use GovTender.");
       return;
     }
 
@@ -107,7 +115,7 @@ const Register = () => {
                 className="flex items-center gap-3 text-sm text-blue-50"
               >
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
-                  ✓
+                  &#10003;
                 </span>
                 {item}
               </div>
@@ -122,12 +130,10 @@ const Register = () => {
                 Get started
               </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-slate-900">
-                Create your account
-              </h2>
+              <h2 className="mt-2 text-3xl font-bold text-slate-900">Create your GovTender account</h2>
 
               <p className="mt-2 text-sm text-slate-500">
-                Choose how you will use the GovTender marketplace.
+                Join as a contractor or technical bid writer.
               </p>
             </div>
 
@@ -146,36 +152,30 @@ const Register = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
-                    onClick={() =>
-                      setForm({ ...form, role: "contractor" })
-                    }
+                    onClick={() => setForm({ ...form, role: "contractor" })} aria-pressed={form.role === "contractor"}
                     className={`rounded-xl border px-4 py-3 text-sm font-semibold transition ${
                       form.role === "contractor"
                         ? "border-blue-600 bg-blue-50 text-blue-700"
                         : "border-slate-200 text-slate-600 hover:border-slate-300"
                     }`}
-                  >
-                    Contractor
-                  </button>
+                  ><span className="block font-bold">Contractor</span><span className="mt-1 block text-left text-xs font-normal leading-5">I need a technical writer to help prepare and submit tender bids.</span></button>
 
                   <button
                     type="button"
                     onClick={() =>
                       setForm({ ...form, role: "writer" })
-                    }
+                    } aria-pressed={form.role === "writer"}
                     className={`rounded-xl border px-4 py-3 text-sm font-semibold transition ${
                       form.role === "writer"
                         ? "border-blue-600 bg-blue-50 text-blue-700"
                         : "border-slate-200 text-slate-600 hover:border-slate-300"
                     }`}
-                  >
-                    Bid Writer
-                  </button>
+                  ><span className="block font-bold">Bid Writer</span><span className="mt-1 block text-left text-xs font-normal leading-5">I write technical proposals and want to find tender opportunities.</span></button>
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                <label htmlFor="register-name" className="mb-2 block text-sm font-semibold text-slate-700">
                   Full name
                 </label>
 
@@ -185,8 +185,7 @@ const Register = () => {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                   />
 
-                  <input
-                    name="name"
+                  <input id="register-name" autoComplete="name" name="name"
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Ishita Singh"
@@ -196,7 +195,7 @@ const Register = () => {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                <label htmlFor="register-email" className="mb-2 block text-sm font-semibold text-slate-700">
                   Email address
                 </label>
 
@@ -206,8 +205,7 @@ const Register = () => {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                   />
 
-                  <input
-                    type="email"
+                  <input type="email" id="register-email" autoComplete="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
@@ -218,7 +216,7 @@ const Register = () => {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
+                <label htmlFor="register-password" className="mb-2 block text-sm font-semibold text-slate-700">
                   Password
                 </label>
 
@@ -228,8 +226,7 @@ const Register = () => {
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                   />
 
-                  <input
-                    type={showPassword ? "text" : "password"}
+                  <input type={showPassword ? "text" : "password"} id="register-password" autoComplete="new-password"
                     name="password"
                     value={form.password}
                     onChange={handleChange}
@@ -239,8 +236,8 @@ const Register = () => {
 
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
+                    onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}
+                    className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
                   >
                     {showPassword ? (
                       <EyeOff size={18} />
@@ -309,7 +306,7 @@ const Register = () => {
               to="/"
               className="mt-5 block text-center text-sm text-slate-400 hover:text-slate-700"
             >
-              ← Back to homepage
+             Back to homepage
             </Link>
           </div>
         </div>
@@ -319,3 +316,7 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+

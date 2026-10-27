@@ -1,48 +1,31 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
+﻿import { useState } from "react";
+import AuthContext from "./authContext";
 import api from "../services/api";
 
-const AuthContext = createContext(null);
-
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("govtender_user");
     const token = localStorage.getItem("govtender_token");
 
-    if (storedUser && token) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch {
-        localStorage.removeItem("govtender_user");
-        localStorage.removeItem("govtender_token");
-      }
-    }
+    if (!storedUser || !token) return null;
 
-    setLoading(false);
-  }, []);
+    try {
+      return JSON.parse(storedUser);
+    } catch {
+      localStorage.removeItem("govtender_user");
+      localStorage.removeItem("govtender_token");
+      return null;
+    }
+  });
+
+  const [loading] = useState(false);
 
   const login = async (email, password) => {
-    const response = await api.post("/auth/login", {
-      email,
-      password,
-    });
-
+    const response = await api.post("/auth/login", { email, password });
     const { token, user: loggedInUser } = response.data;
 
     localStorage.setItem("govtender_token", token);
-    localStorage.setItem(
-      "govtender_user",
-      JSON.stringify(loggedInUser)
-    );
-
+    localStorage.setItem("govtender_user", JSON.stringify(loggedInUser));
     setUser(loggedInUser);
 
     return loggedInUser;
@@ -50,15 +33,10 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (formData) => {
     const response = await api.post("/auth/register", formData);
-
     const { token, user: registeredUser } = response.data;
 
     localStorage.setItem("govtender_token", token);
-    localStorage.setItem(
-      "govtender_user",
-      JSON.stringify(registeredUser)
-    );
-
+    localStorage.setItem("govtender_user", JSON.stringify(registeredUser));
     setUser(registeredUser);
 
     return registeredUser;
@@ -84,8 +62,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const useAuth = () => {
-  return useContext(AuthContext);
 };
